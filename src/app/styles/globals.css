@@ -128,3 +128,7 @@ body {
     animation-play-state: paused;
   }
 }
+
+.test-home {
+  background-image: url("/images/home.png");
+}

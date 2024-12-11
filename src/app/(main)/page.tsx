@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { rubikBubbles } from "@/fonts";
+import Image from "next/image";
 import Link from "next/link";
-
-// import "./styles/floatAnimations.css";
 
 export default function Home() {
   return (
@@ -13,11 +12,18 @@ export default function Home() {
             style={{
               backgroundSize: "15%",
             }}
-            className={`${rubikBubbles.className} py-4 bg-clip-text text-transparent bg-grass dark:bg-grassDark text-7xl font-bold`}
+            className={`${rubikBubbles.className} py-4 select-none bg-clip-text text-transparent bg-grass dark:bg-grassDark text-7xl font-bold`}
           >
             Still mowing the lawn?
           </h1>
         </div>
+        <div className="w-24 h-24 test-home"></div>
+        <Image
+          src="/images/grass_texture_dark.jpg"
+          alt="Garden Illustration"
+          width={300}
+          height={300}
+        />
         {/* <div>
             <Image
               src="/images/cutting_grass_256.png"
