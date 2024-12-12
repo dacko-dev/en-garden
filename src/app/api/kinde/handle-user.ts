@@ -4,6 +4,10 @@ import { decodeWebhook } from "@kinde/webhooks";
 import { WebhookEventType } from "@kinde/webhooks/dist/types";
 import { eq } from "drizzle-orm";
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : "Unknown error";
+}
+
 // https://github.com/kinde-oss/webhook
 export async function POST(request: Request) {
   try {
@@ -28,9 +32,12 @@ export async function POST(request: Request) {
           active: true,
         });
       } catch (error) {
-        return new Response(`Webhook insert user error: ${error.message}`, {
-          status: 400,
-        });
+        return new Response(
+          `Webhook insert user error: ${getErrorMessage(error)}`,
+          {
+            status: 400,
+          }
+        );
       }
     }
 
@@ -45,9 +52,12 @@ export async function POST(request: Request) {
           })
           .where(eq(users.id, decodedWebhook.data.user.id));
       } catch (error) {
-        return new Response(`Webhook update user error: ${error.message}`, {
-          status: 400,
-        });
+        return new Response(
+          `Webhook update user error: ${getErrorMessage(error)}`,
+          {
+            status: 400,
+          }
+        );
       }
     }
 
@@ -55,13 +65,16 @@ export async function POST(request: Request) {
       try {
         db.delete(users).where(eq(users.id, decodedWebhook.data.user.id));
       } catch (error) {
-        return new Response(`Webhook delete user error: ${error.message}`, {
-          status: 400,
-        });
+        return new Response(
+          `Webhook delete user error: ${getErrorMessage(error)}`,
+          {
+            status: 400,
+          }
+        );
       }
     }
   } catch (error) {
-    return new Response(`Webhook error: ${error.message}`, {
+    return new Response(`Webhook error: ${getErrorMessage(error)}`, {
       status: 400,
     });
   }
