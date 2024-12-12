@@ -1,17 +1,10 @@
 import { ThemeModeToggle } from "@/components/ThemeModeToggle/ThemeModeToggle";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { yujiMai } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
 import AvatarDropdown from "@/components/layout/MainHeader/AvatarDropdown";
 import ActionButtonDropdown from "@/components/layout/MainHeader/ActionButtonDropdown";
-import { Mail, MailPlus, Phone, Send } from "lucide-react";
 
 export default function MainHeader() {
   return (

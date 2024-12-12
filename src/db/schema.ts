@@ -22,7 +22,7 @@ export const users = pgTable("users", {
   id: text()
     .primaryKey()
     .default(sql`gen_random_uuid()`),
-  email: text().notNull(),
+  email: text().notNull().unique(),
   first_name: text(),
   last_name: text(),
   avatar_url: text(),
@@ -43,7 +43,7 @@ export const users = pgTable("users", {
 
 export const services = pgTable("services", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: text().notNull(),
+  name: text().notNull().unique(),
   description: text(),
   price: decimal(),
   duration: integer(),
@@ -73,7 +73,7 @@ export const commissions = pgTable("commissions", {
   is_recurring: boolean().notNull().default(false),
   start_time: timestamp().notNull(),
   end_time: timestamp().notNull(),
-  date_start: timestamp().notNull(),
+  start_date: timestamp().notNull(),
 
   same_address: boolean().notNull().default(false),
   notes: text(),
@@ -128,7 +128,7 @@ export const recurring = pgTable("recurring", {
   reccurence: reccurenceEnum().notNull(),
   start_time: timestamp().notNull(),
   end_time: timestamp().notNull(),
-  date_start: date().notNull(),
+  start_date: date().notNull(),
   notes: text(),
 
   created_at: timestamp().notNull().defaultNow(),

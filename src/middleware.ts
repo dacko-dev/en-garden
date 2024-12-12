@@ -3,9 +3,8 @@ import type { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export default withAuth(
-  async function middleware(req: NextRequest) {
-    //    console.log(req);
-  },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async function middleware(req: NextRequest) {},
   {
     isReturnToCurrentPage: true,
   }
