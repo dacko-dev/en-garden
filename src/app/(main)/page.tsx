@@ -17,13 +17,7 @@ export default function Home() {
             Still mowing the lawn?
           </h1>
         </div>
-        <div className="w-24 h-24 test-home"></div>
-        <Image
-          src="/images/grass_texture_dark.jpg"
-          alt="Garden Illustration"
-          width={300}
-          height={300}
-        />
+
         {/* <div>
             <Image
               src="/images/cutting_grass_256.png"
@@ -36,7 +30,7 @@ export default function Home() {
           <h2 className={`text-xl`}>
             Stop wasting your weekends. Let us do the work for you.
           </h2>
-          <div className="flex items-center justify-between gap-8 ">
+          <div className="flex items-center justify-between gap-8 mt-12">
             <Button
               size={"lg"}
               variant={"outline"}

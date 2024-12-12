@@ -41,7 +41,7 @@ export default function AvatarDropdown() {
             src={
               user?.picture
                 ? user.picture
-                : "https://ui.shadcn.com/avatars/03.png"
+                : "https://ui.shadcn.com/avatars/02.png"
             }
           />
           <AvatarFallback>{fallbackInitials}</AvatarFallback>

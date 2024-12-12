@@ -11,6 +11,7 @@ import React from "react";
 
 import AvatarDropdown from "@/components/layout/MainHeader/AvatarDropdown";
 import ActionButtonDropdown from "@/components/layout/MainHeader/ActionButtonDropdown";
+import { Mail, MailPlus, Phone, Send } from "lucide-react";
 
 export default function MainHeader() {
   return (
@@ -29,14 +30,9 @@ export default function MainHeader() {
           <Link className="hover:underline" href="/services">
             Services
           </Link>
-          {/* <Link href="/contact">Contact</Link> */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="">Contact</DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>Email</DropdownMenuItem>
-              <DropdownMenuItem>Phone</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link className="hover:underline" href="/contact">
+            Contact
+          </Link>
         </nav>
 
         <nav className="flex items-center gap-8">

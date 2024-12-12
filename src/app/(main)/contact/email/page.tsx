@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function ContactFormPage() {
+export default function ContactEmailPage() {
   return <div>Contact</div>;
 }

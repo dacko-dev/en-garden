@@ -1,6 +1,15 @@
-import { NextResponse } from "next/server";
+import { withAuth } from "@kinde-oss/kinde-auth-nextjs/server";
 import type { NextRequest } from "next/server";
-export function middleware(request: NextRequest) {}
+
+// This function can be marked `async` if using `await` inside
+export default withAuth(
+  async function middleware(req: NextRequest) {
+    //    console.log(req);
+  },
+  {
+    isReturnToCurrentPage: true,
+  }
+);
 
 export const config = {
   matcher: [
@@ -9,8 +18,11 @@ export const config = {
      * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * - images, icons (static content folders)
+     * - favicon.ico, icon.png, sitemap.xml, robots.txt (metadata files)
+     * - homepage ($ after beginning)
+     * - about, services, contact (static pages)
      */
-    "/((?!api|_next/static|_next/image|images|favicon.ico).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|sitemap.xml|robots.txt|images|icons|$|about|services|contact).*)",
   ],
 };

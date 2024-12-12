@@ -15,8 +15,7 @@ export default {
       backgroundImage: {
         home: "url('/images/home.png')",
         grass: "url('/images/grass_texture.jpg')",
-        grassDark: "url('/grass_texture_dark.jpg')",
-        // grassDark: "url('/images/grass_texture_dark.jpg')",
+        grassDark: "url('/images/grass_texture_dark.jpg')",
       },
       colors: {
         background: "hsl(var(--background))",
