@@ -1,0 +1,1 @@
+ALTER TABLE "services" ADD COLUMN "single_unit" boolean DEFAULT true NOT NULL;

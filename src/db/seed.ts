@@ -1,17 +1,14 @@
 import { db } from "@/db/export";
-import { services } from "@/db/schema";
+import { daysOffWork, services } from "@/db/schema";
+import { blackouts, holidays, servicesData } from "@/lib/constants";
 
 async function seed() {
-  const mowing: typeof services.$inferInsert = {
-    name: "Mowing",
-    description: "Mow the lawn",
-    price: "45",
-    duration: 30,
-    duration_unit: "minutes",
-    duration_per: "1/4 acre",
-  };
+  const holidaysData = holidays;
+  const blackoutsData = blackouts;
 
-  await db.insert(services).values(mowing);
+  await db.insert(services).values(servicesData);
+  await db.insert(daysOffWork).values(holidaysData);
+  await db.insert(daysOffWork).values(blackoutsData);
 }
 
 async function main() {

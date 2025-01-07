@@ -1,0 +1,17 @@
+.hop {
+  animation: hop 0.4s ease-in-out;
+}
+
+@keyframes hop {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.7rem);
+  }
+  85% {
+    transform: translateY(-0.2rem);
+  }
+}

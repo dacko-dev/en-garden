@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
+import "./styles/animations.css";
+
 import { poppins } from "@/fonts";
 import { ThemeProvider } from "@/app/providers/theme-provider";
 import { AuthProvider } from "@/app/providers/AuthProvider";

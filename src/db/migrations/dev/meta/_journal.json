@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1736119556920,
+      "tag": "0000_sparkling_gateway",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1736251825306,
+      "tag": "0001_concerned_smiling_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1736269066594,
+      "tag": "0002_natural_wind_dancer",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1736269765099,
+      "tag": "0003_clever_hedge_knight",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1736277035696,
+      "tag": "0004_clumsy_pete_wisdom",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1736286652373,
+      "tag": "0005_fearless_wind_dancer",
+      "breakpoints": true
+    }
+  ]
+}

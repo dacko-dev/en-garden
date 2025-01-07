@@ -6,6 +6,7 @@ export default withAuth(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function middleware(req: NextRequest) {},
   {
+    // Redirect to the current page after login
     isReturnToCurrentPage: true,
   }
 );
@@ -20,8 +21,8 @@ export const config = {
      * - images, icons (static content folders)
      * - favicon.ico, icon.png, sitemap.xml, robots.txt (metadata files)
      * - homepage ($ after beginning)
-     * - about, services, contact (static pages)
+     * - about, services, contact, team (static pages)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|sitemap.xml|robots.txt|images|icons|$|about|services|contact).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|sitemap.xml|robots.txt|images|icons|$|about|services|contact|team).*)",
   ],
 };

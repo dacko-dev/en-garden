@@ -9,13 +9,14 @@ const footerLinks = [
   { href: "/terms", label: "Terms of Service" },
 ];
 
+// TODO: mobile footer
 export default function Mainfooter() {
   return (
     <footer
-      className="border-t   grid
+      className="border-t  hidden md:grid
   grid-cols-main shadow-sm mt-auto col-span-full"
     >
-      <div className="flex items-center justify-center py-2  col-start-2 col-end-3">
+      <div className="flex items-center justify-center py-2  col-start-2 col-end-3 overflow-x-auto">
         <ul role="list" className="flex items-center  gap-24">
           {footerLinks.map(({ href, label }) => (
             <li key={href}>
@@ -67,7 +68,7 @@ function FooterLink({
 }) {
   return (
     <Link
-      className="hover:underline text-sm opacity-90 hover:opacity-100 transition-opacity duration-100"
+      className="hover:underline  text-sm opacity-90 hover:opacity-100  transition-opacity duration-100"
       href={href}
     >
       {children}

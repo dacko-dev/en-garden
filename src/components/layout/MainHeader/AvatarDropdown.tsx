@@ -16,7 +16,8 @@ import {
   RegisterLink,
   useKindeBrowserClient,
 } from "@kinde-oss/kinde-auth-nextjs";
-import { LogOut } from "lucide-react";
+import { CircleUserRound, LogOut } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export default function AvatarDropdown() {
@@ -36,14 +37,15 @@ export default function AvatarDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger className="rounded-full">
         <Avatar className="object-cover w-10 h-10 rounded-full">
-          <AvatarImage
-            className="w-10 h-10 rounded-full"
-            src={
-              user?.picture
-                ? user.picture
-                : "https://ui.shadcn.com/avatars/02.png"
-            }
-          />
+          {user && user.picture ? (
+            <AvatarImage
+              className="w-10 h-10 rounded-full"
+              src={user.picture}
+            />
+          ) : (
+            <CircleUserRound />
+          )}
+
           <AvatarFallback>{fallbackInitials}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -52,7 +54,9 @@ export default function AvatarDropdown() {
           <DropdownMenuContent>
             <DropdownMenuLabel>{displayName}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Account</DropdownMenuItem>
+            <Link className="" href="/dashboard/account">
+              <DropdownMenuItem>Account</DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>Commisions</DropdownMenuItem>
             <DropdownMenuItem>Scheduled</DropdownMenuItem>
             <DropdownMenuItem>Billings</DropdownMenuItem>

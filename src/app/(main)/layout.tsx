@@ -12,15 +12,16 @@ export default function MainLayout({
       className="
       grid
       grid-cols-main
-      grid-rows-[auto_1fr_auto]
+      md:grid-rows-[auto_1fr_auto]
+      grid-rows-[auto_1fr]
       min-h-full
+      relative
     "
     >
       <MainHeader />
-
-      <main className="relative col-start-2 col-end-3">
+      <main id="main-content" className="relative col-start-2 col-end-3 ">
+        {/*  */}
         {children}
-
         <MessageAssistantButton />
       </main>
 
