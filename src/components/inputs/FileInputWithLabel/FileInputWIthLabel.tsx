@@ -70,7 +70,7 @@ export function FileInputWithLabel<S>({
         // if no files skip, so the files are
         return;
       }
-      console.log("event.dataTransfer.files: ", event.dataTransfer.files);
+      // console.log("event.dataTransfer.files: ", event.dataTransfer.files);
       const oldFiles = form.getValues(nameInSchema);
 
       //   check if files are already in the form
@@ -84,12 +84,8 @@ export function FileInputWithLabel<S>({
           )
         : Array.from(event.dataTransfer.files);
 
-      form.setValue(nameInSchema, [...oldFiles, ...newFiles]);
-
-      //   form.setValue(nameInSchema, [
-      //     ...before,
-      //     ...Array.from(event.dataTransfer.files),
-      //   ]);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      form.setValue(nameInSchema, [...oldFiles, ...newFiles] as any);
     },
     [form, nameInSchema]
   );
@@ -175,9 +171,9 @@ export function FileInputWithLabel<S>({
                     // if no files skip, so the files are
                     return;
                   }
-                  console.log("event.target.files: ", event.target.files);
+                  // console.log("event.target.files: ", event.target.files);
 
-                  onChange(event.target.files);
+                  onChange(Array.from(event.target.files));
                 }}
               />
             </FormControl>

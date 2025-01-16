@@ -1,3 +1,4 @@
+import { MAX_FILE_SIZE } from "@/lib/constants";
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
@@ -9,6 +10,11 @@ const nextConfig: NextConfig = {
         pathname: "/avatars/**",
       },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: MAX_FILE_SIZE,
+    },
   },
   /* config options here */
 };

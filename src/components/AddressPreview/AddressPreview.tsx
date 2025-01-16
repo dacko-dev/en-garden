@@ -12,12 +12,12 @@ export default function AddressPreview({
   }
 
   return (
-    <address className="flex flex-col">
-      <h3>{address.name}</h3>
-      <p>{address.city}</p>
-      <p>{address.zip}</p>
-      <p>{address.address1}</p>
-      <p>{address.address2 && <>{address.address2}</>}</p>
+    <address className="flex flex-col p-4 bg-card rounded-md border-2 border-dotted w-full">
+      {/* <h3>{address.name}</h3> */}
+      <p>
+        {address.city}, {address.zip} {address.address1},{" "}
+        {address.address2 && <>{address.address2}</>}
+      </p>
     </address>
   );
 }

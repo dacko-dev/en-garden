@@ -1,12 +1,9 @@
 import { db } from "@/db/export";
 import { users } from "@/db/schema";
+import { getErrorMessage } from "@/lib/utils";
 import { decodeWebhook } from "@kinde/webhooks";
 import { WebhookEventType } from "@kinde/webhooks/dist/types";
 import { eq } from "drizzle-orm";
-
-function getErrorMessage(error: unknown): string {
-  return error instanceof Error ? error.message : "Unknown error";
-}
 
 // https://github.com/kinde-oss/webhook
 export async function POST(request: Request) {

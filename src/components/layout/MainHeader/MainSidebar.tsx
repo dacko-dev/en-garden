@@ -34,7 +34,7 @@ export default function MainSidebar({ className }: { className?: string }) {
 
       {/* <MainSidebar /> */}
       <aside className="px-16 flex flex-col justify-center sm:justify-normal sm:px-0 fixed top-0 transition-all right-0 h-full w-full sm:w-80 bg-background border-0  sm:border-l border-border z-40 transform peer-checked:invisible  peer-checked:border-4 peer-checked:translate-x-full duration-300 ease-in-out">
-        {/* <div className="p-4 sm:absolute flex justify-end  sm:-left-16">
+        <div className="p-4 sm:absolute flex justify-end  sm:-left-16">
           <Button
             asChild
             variant={"outline"}
@@ -45,7 +45,7 @@ export default function MainSidebar({ className }: { className?: string }) {
               <X />
             </label>
           </Button>
-        </div> */}
+        </div>
 
         <Link
           href="/"
@@ -109,22 +109,22 @@ export default function MainSidebar({ className }: { className?: string }) {
         </div>
       </aside>
 
-      <Button asChild className="cursor-pointer z-[100] relative" size={"icon"}>
+      <Button asChild className="cursor-pointer relative" size={"icon"}>
         <label htmlFor="menu-toggle">
           <Menu
             className="group-has-[#menu-toggle:checked]:visible
             group-has-[#menu-toggle:checked]:opacity-100
             opacity-0
             transition-all
-          transform group-has-[#menu-toggle:checked]:rotate-0 rotate-45
-          collapse absolute"
+            transform group-has-[#menu-toggle:checked]:rotate-0 rotate-45
+            collapse absolute"
           />
           <X
             className="group-has-[#menu-toggle:checked]:collapse absolute
             group-has-[#menu-toggle:checked]:opacity-0
             opacity-100
-          transition-all transform group-has-[#menu-toggle:checked]:rotate-45
-          rotate-0
+            transition-all transform group-has-[#menu-toggle:checked]:rotate-45
+            rotate-0
           "
           />
         </label>

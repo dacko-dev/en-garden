@@ -14,7 +14,6 @@ import {
 import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { CalendarPlus, MailPlus, Phone, Send } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import React from "react";
 
 export default function ActionButton({

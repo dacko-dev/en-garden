@@ -49,7 +49,7 @@ export function InputWithLabel<S>({
           <FormControl>
             <Input
               id={nameInSchema}
-              className={`w-full ${inputClassName}`}
+              className={`${inputClassName}`}
               {...props}
               {...field}
             />

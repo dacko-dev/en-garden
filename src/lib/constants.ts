@@ -2,10 +2,20 @@ import { daysOffWork, services } from "@/db/schema";
 
 export const ACCEPTED_FILE_TYPES = ["image/jpeg", "image/png", "image/gif"];
 
+// used in next.config.js
+export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+export const MAX_FILE_COUNT = 5;
+
 // time when the working day starts
 export const WORKING_DAY_START = 8;
 // time when the working day ends
 export const WORKING_DAY_END = 18;
+
+export const MAX_ADDRESS_COUNT = 10;
+
+// state where the company is located
+export const COMPANY_US_STATE = "Arizona";
 
 export const headerLinks = [
   {
@@ -26,6 +36,7 @@ export const headerLinks = [
   },
 ];
 
+// For seeding the database
 export const servicesData: (typeof services.$inferInsert)[] = [
   {
     name: "Mowing",
@@ -133,7 +144,6 @@ export const servicesData: (typeof services.$inferInsert)[] = [
     duration: 2,
     duration_unit: "weeks",
     duration_per: "project",
-    single_unit: true,
     price_per: "project",
     allow_recurrence: false,
   },
@@ -218,6 +228,7 @@ export const holidays: (typeof daysOffWork.$inferInsert)[] = [
   },
 ];
 
+// For seeding the database
 export const blackouts: (typeof daysOffWork.$inferInsert)[] = [
   {
     date_from: new Date("2022-06-10").toISOString(),
@@ -225,10 +236,3 @@ export const blackouts: (typeof daysOffWork.$inferInsert)[] = [
     name: "Blackout 1",
   },
 ];
-
-/**
- * Returns the number of no work days in a month.
- */
-// export function getNoWorkDays():  boolean | ((date: Date) => boolean) | Date | Date[] {
-
-// }

@@ -14,14 +14,14 @@ import {
   LoginLink,
   LogoutLink,
   RegisterLink,
-  useKindeBrowserClient,
+  useKindeAuth,
 } from "@kinde-oss/kinde-auth-nextjs";
 import { CircleUserRound, LogOut } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 export default function AvatarDropdown() {
-  const { isAuthenticated, user } = useKindeBrowserClient();
+  const { isAuthenticated, user } = useKindeAuth();
 
   const displayName =
     user?.given_name && user?.family_name
@@ -32,21 +32,21 @@ export default function AvatarDropdown() {
     ? user.given_name[0]
     : user?.email
     ? user.email[0]
-    : "U";
+    : "";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="rounded-full">
-        <Avatar className="object-cover w-10 h-10 rounded-full">
+        <Avatar className="object-cover w-10 h-10 flex items-center justify-center rounded-full border">
           {user && user.picture ? (
             <AvatarImage
               className="w-10 h-10 rounded-full"
               src={user.picture}
             />
           ) : (
-            <CircleUserRound />
+            <CircleUserRound className="w-6 h-6 " />
           )}
 
-          <AvatarFallback>{fallbackInitials}</AvatarFallback>
+          {user && <AvatarFallback>{fallbackInitials}</AvatarFallback>}
         </Avatar>
       </DropdownMenuTrigger>
       {isAuthenticated ? (

@@ -6,12 +6,8 @@ export default function FormServicePreview({
   selectedServiceId,
 }: {
   services: z.infer<typeof serviceSelectSchema>[] | null;
-  selectedServiceId: number | null;
+  selectedServiceId: string | number | null;
 }) {
-  console.log("services", services);
-  console.log("serviceId", selectedServiceId);
-  console.log("serviceId type", typeof selectedServiceId);
-
   const service = services?.find(
     (service) => service.id === Number(selectedServiceId)
   );
@@ -38,6 +34,7 @@ export default function FormServicePreview({
             <p>
               {service.not_measurable && `From `}
               {`${service.duration} ${service.duration_unit}`}
+              {!service.not_measurable && ` per ${service.duration_per}`}
             </p>
           </div>
           <div className="grid grid-cols-[auto_1fr] gap-1">

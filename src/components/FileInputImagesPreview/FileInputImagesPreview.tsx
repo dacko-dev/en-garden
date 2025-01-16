@@ -10,7 +10,6 @@ export default function FileInputImagesPreview({
   images: FileList | File[] | null | undefined;
   onRemove: (index: number) => void;
 }) {
-  console.log(images);
   if (!images) return null;
 
   return (
@@ -22,7 +21,7 @@ export default function FileInputImagesPreview({
             height={200}
             src={URL.createObjectURL(image)}
             alt="preview"
-            className="w-full h-40 object-cover"
+            className="w-full h-40 object-cover rounded-md"
           />
           <Button
             size={"icon"}

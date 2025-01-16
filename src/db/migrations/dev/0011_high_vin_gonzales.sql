@@ -1,0 +1,1 @@
+ALTER TABLE "commissions" DROP COLUMN "same_address";

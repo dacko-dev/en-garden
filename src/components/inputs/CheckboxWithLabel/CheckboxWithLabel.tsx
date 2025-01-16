@@ -42,10 +42,12 @@ export function CheckboxWithLabel<S>({
         <FormItem className={`flex items-center gap-2 ${wrapperClassName}`}>
           <FormControl>
             <Checkbox
+              {...field}
               id={nameInSchema}
               className={`${checkboxClassName}`}
+              checked={field.value}
+              onCheckedChange={field.onChange}
               {...props}
-              {...field}
             />
           </FormControl>
           <FormLabel

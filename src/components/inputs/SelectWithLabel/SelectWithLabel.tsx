@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SelectProps } from "@radix-ui/react-select";
 
 type DataObj = {
   value: string;
@@ -32,7 +33,7 @@ type Props<S> = {
   triggerClassName?: string;
   labelClassName?: string;
   wrapperClassName?: string;
-};
+} & SelectProps;
 
 export function SelectWithLabel<S>({
   fieldLabel,
@@ -42,6 +43,7 @@ export function SelectWithLabel<S>({
   triggerClassName,
   labelClassName,
   wrapperClassName,
+  ...props
 }: Props<S>) {
   const form = useFormContext();
 
@@ -58,7 +60,7 @@ export function SelectWithLabel<S>({
             {fieldLabel}
           </FormLabel>
 
-          <Select {...field} onValueChange={field.onChange}>
+          <Select {...field} {...props} onValueChange={field.onChange}>
             <FormControl className="w-full">
               <SelectTrigger
                 id={nameInSchema}

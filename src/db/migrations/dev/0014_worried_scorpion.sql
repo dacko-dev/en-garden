@@ -1,0 +1,1 @@
+ALTER TABLE "companies" ALTER COLUMN "tax_id" SET NOT NULL;
