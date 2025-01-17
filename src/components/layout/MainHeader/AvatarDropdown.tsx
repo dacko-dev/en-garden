@@ -34,7 +34,7 @@ export default function AvatarDropdown() {
     ? user.email[0]
     : "";
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="rounded-full">
         <Avatar className="object-cover w-10 h-10 flex items-center justify-center rounded-full border">
           {user && user.picture ? (

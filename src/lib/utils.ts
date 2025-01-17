@@ -90,3 +90,9 @@ export function cleanDefaultValues<T extends Record<string, unknown>>(
     Object.entries(data).map(([key, value]) => [key, value ?? ""])
   ) as T;
 }
+
+// TODO: refractor commissions schema start_time to timestampz, after that remove this function
+// value like 22:11:00 to Date
+export function transformTimeToDate(time: string) {
+  return new Date(`2025-01-01T${time}`);
+}

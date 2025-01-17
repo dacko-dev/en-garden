@@ -24,7 +24,7 @@ export default function ActionButton({
   const { user } = useKindeAuth();
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger
         // className="whitespace-nowrap px-4 py-2 bg-primary text-primary-foreground rounded-md"
         className="whitespace-nowrap w-full"

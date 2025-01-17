@@ -4,6 +4,14 @@ import { commissions } from "@/db/schema";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { eq } from "drizzle-orm";
 
+export type UserDashboardCommissions = Awaited<
+  ReturnType<typeof getCurrentUserCommissions>
+>;
+
+// single commission type
+export type UserDashboardCommission =
+  NonNullable<UserDashboardCommissions> extends Array<infer U> ? U : null;
+
 export async function getCurrentUserCommissions() {
   const session = getKindeServerSession();
   const user = await session.getUser();
@@ -33,6 +41,13 @@ export async function getCurrentUserCommissions() {
             city: true,
             state: true,
             zip: true,
+          },
+        },
+        recurring: {
+          columns: {
+            recurrence: true,
+            start_date: true,
+            start_time: true,
           },
         },
       },

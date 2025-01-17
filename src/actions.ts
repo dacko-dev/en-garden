@@ -129,6 +129,20 @@ export async function deleteAddressAction({
       throw new Error("Not authenticated");
     }
 
+    // Check if address is related to commissions
+    const relatedCommissions = await db
+      .select()
+      .from(commissions)
+      .where(eq(commissions.address_id, addressId))
+      .limit(1);
+
+    if (relatedCommissions.length > 0) {
+      return {
+        message: "Address is related to commissions",
+        isError: true,
+      };
+    }
+
     const deletedAddress = await db
       .delete(addresses)
       .where(and(eq(addresses.id, addressId), eq(addresses.user_id, user.id)))
@@ -171,6 +185,20 @@ export async function updateAddressAction({
 
     if (address.user_id !== user.id) {
       throw new Error("You are not authorized");
+    }
+
+    // Check if address is related to commissions
+    const relatedCommissions = await db
+      .select()
+      .from(commissions)
+      .where(eq(commissions.address_id, address.id))
+      .limit(1);
+
+    if (relatedCommissions.length > 0) {
+      return {
+        message: "Address is related to commissions",
+        isError: true,
+      };
     }
 
     const parsedResult = addressUpdateSchema.safeParse(address);

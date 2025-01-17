@@ -1,28 +1,21 @@
-import DashboardUserCommissionCard from "@/app/(main)/dashboard/commissions/DashboardUserCommissionCard";
-import { getCurrentUserCommissions } from "@/data-access/commissions";
+// import DashboardCommissionFilters from "@/app/(main)/dashboard/commissions/DashboardCommissionFilters";
+// import DashboardUserCommissionCard from "@/app/(main)/dashboard/commissions/DashboardUserCommissionCard";
+// import { Button } from "@/components/ui/button";
+// import { getCurrentUserCommissions } from "@/data-access/commissions";
+// import Link from "next/link";
+import DashboardUserCommissions from "@/app/(main)/dashboard/commissions/DashboardUserCommissions";
 import React from "react";
 
 export default async function DashboardCommissionsPage() {
-  const commissions = await getCurrentUserCommissions();
+  // const commissions = await getCurrentUserCommissions();
 
   return (
     <div>
       <div>
-        <h1 className="text-2xl font-bold">Account</h1>
-        <p>View and edit your account details</p>
+        <h1 className="text-2xl font-bold">Commissions</h1>
+        <p>View and manage your commissions</p>
       </div>
-      <div>
-        {commissions ? (
-          commissions.map((commission) => (
-            <DashboardUserCommissionCard
-              key={commission.id}
-              commission={commission}
-            />
-          ))
-        ) : (
-          <p>No commissions found</p>
-        )}
-      </div>
+      <DashboardUserCommissions />
     </div>
   );
 }

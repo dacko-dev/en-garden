@@ -17,6 +17,21 @@ export const MAX_ADDRESS_COUNT = 10;
 // state where the company is located
 export const COMPANY_US_STATE = "Arizona";
 
+// IMPORTANT: used in db enum, DO NOT CHANGE
+export const COMISSION_STATUSES = [
+  "active",
+  "canceled",
+  "suspended",
+  "completed",
+] as const;
+
+// IMPORTANT: used in db enum, DO NOT CHANGE
+export const COMMISSION_RECURRENCES = ["daily", "weekly", "monthly"] as const;
+
+export const COMMISSION_SORT_DATE_OPTIONS = [
+  { value: "asc", label: "Ascending" },
+  { value: "desc", label: "Descending" },
+];
 export const headerLinks = [
   {
     name: "About",

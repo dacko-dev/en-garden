@@ -19,16 +19,16 @@ import {
 import { z } from "zod";
 import {
   ACCEPTED_FILE_TYPES,
+  COMISSION_STATUSES,
+  COMMISSION_RECURRENCES,
   COMPANY_US_STATE,
   MAX_FILE_COUNT,
   MAX_FILE_SIZE,
 } from "@/lib/constants";
 
-export const recurrenceEnum = pgEnum("recurrence", [
-  "daily",
-  "weekly",
-  "monthly",
-]);
+export const recurrenceEnum = pgEnum("recurrence", COMMISSION_RECURRENCES);
+
+export const commissionStatus = pgEnum("commission_status", COMISSION_STATUSES);
 
 export const recurrenceSchema = createSelectSchema(recurrenceEnum);
 
@@ -278,9 +278,7 @@ export const serviceSelectSchema = createSelectSchema(services);
 export const commissions = pgTable("commissions", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   user_id: text().notNull(),
-
   assigned_to: text(),
-
   name: text(), // name of the commission for the user, like "Summer House Lawn Mowing"
 
   service_id: integer().notNull(),
@@ -295,14 +293,8 @@ export const commissions = pgTable("commissions", {
 
   notes: text(),
 
-  canceled: boolean().notNull().default(false),
-  canceled_at: timestamp(),
-
-  suspended: boolean().notNull().default(false),
-  suspended_at: date(),
-
-  completed: boolean().notNull().default(false),
-  completed_at: date(),
+  status: commissionStatus().notNull().default("active"),
+  status_at: timestamp().notNull().defaultNow(),
 
   images_names: text("images_names")
     .array()
@@ -380,13 +372,8 @@ export const commissionFormSchema = commissionInsertSchema
   .omit({
     images_names: true,
     assigned_to: true,
-    canceled: true,
-    canceled_at: true,
-    completed: true,
-    completed_at: true,
     created_at: true,
-    suspended: true,
-    suspended_at: true,
+    status: true,
   })
   .extend({
     name: z.string().min(2).max(50),

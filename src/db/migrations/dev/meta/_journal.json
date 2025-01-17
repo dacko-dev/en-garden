@@ -127,6 +127,13 @@
       "when": 1737064679228,
       "tag": "0017_dear_alice",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1737124234369,
+      "tag": "0018_typical_rhino",
+      "breakpoints": true
     }
   ]
 }
