@@ -8,7 +8,14 @@ import {
 } from "@/components/ui/card";
 import { CommissionApi } from "@/app/api/commissions/route";
 
-import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
+import {
+  Check,
+  CircleSlash,
+  Ellipsis,
+  Eye,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -16,9 +23,29 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { transformTimeToDate } from "@/lib/utils";
+import {
+  capitalizeFirstWord,
+  makePlural,
+  transformTimeToDate,
+} from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { COMISSION_STATUSES_TYPE } from "@/types";
+
+function getBadgeVariant(
+  status: COMISSION_STATUSES_TYPE
+): "default" | "destructive" | "secondary" | "outline" {
+  switch (status) {
+    case "canceled":
+      return "secondary";
+    case "suspended":
+      return "destructive";
+    case "completed":
+      return "secondary";
+    default:
+      return "default";
+  }
+}
 
 export default function DashboardUserCommissionCard({
   commission,
@@ -26,21 +53,15 @@ export default function DashboardUserCommissionCard({
   commission: CommissionApi;
 }) {
   console.log("commission", commission);
-  const getBadgeColor = () => {
-    switch (commission.status) {
-      case "canceled":
-        return "destructive";
-      case "suspended":
-        return "warning";
-      case "completed":
-        return "success";
-      default:
-        return "primary";
-    }
-  };
 
   return (
-    <Card className="shadow-md border rounded-lg">
+    <Card className="shadow-md border rounded-lg relative">
+      <Badge
+        variant={getBadgeVariant(commission.status)}
+        className="absolute -top-2 left-10"
+      >
+        {capitalizeFirstWord(commission.status)}
+      </Badge>
       <CardHeader>
         <div className="flex justify-between items-center">
           <div>
@@ -67,6 +88,16 @@ export default function DashboardUserCommissionCard({
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Button
+                  variant={"secondary"}
+                  className="w-full flex justify-between items-center"
+                >
+                  Cancel
+                  <CircleSlash />
+                </Button>
+              </DropdownMenuItem>
+
+              <DropdownMenuItem asChild>
+                <Button
                   variant={"destructive"}
                   className="w-full flex justify-between items-center"
                 >
@@ -81,9 +112,6 @@ export default function DashboardUserCommissionCard({
               </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
-          {/* <Badge color={getBadgeColor()}>
-            {capitalizeFirstWord(commission.status)}
-          </Badge> */}
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -102,28 +130,17 @@ export default function DashboardUserCommissionCard({
             </span>
           </div>
         </div>
-        <div className="flex flex-wrap gap-6">
-          <div className="flex flex-col">
-            <span className="text-stone-500 text-sm">Start Time</span>
-            <span className="font-medium">{commission.start_time}</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-stone-500 text-sm">Start Date</span>
-            <span className="font-medium">
-              {new Date(commission.start_date).toLocaleDateString()}
-            </span>
-          </div>
-        </div>
+
         <div className="flex flex-wrap gap-6">
           <div className="flex flex-col">
             <span className="text-stone-500 text-sm">Units</span>
             <span className="font-medium">
-              {commission.unknown_units ? "Unknown" : commission.units}
+              {commission.unknown_units
+                ? "Unknown"
+                : `${commission.units} ${capitalizeFirstWord(
+                    makePlural(commission.service?.price_per)
+                  )}`}
             </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-stone-500 text-sm">Notes</span>
-            <span className="font-medium">{commission.notes || "None"}</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-6">
@@ -152,15 +169,13 @@ export default function DashboardUserCommissionCard({
             </span>
           </div>
         </div>
-        {commission.notes && (
-          <div className="flex flex-col">
-            <span className="text-stone-500 text-sm">Notes</span>
-            <Textarea
-              defaultValue={commission.notes}
-              className="font-medium min-h-[100px] bg-background/10"
-            ></Textarea>
-          </div>
-        )}
+        <div className="flex flex-col">
+          <span className="text-stone-500 text-sm">Notes</span>
+          <Textarea
+            defaultValue={commission.notes || undefined}
+            className="font-medium min-h-[100px] bg-background/10"
+          ></Textarea>
+        </div>
         {commission.images_names && commission.images_names.length > 0 && (
           <div className="space-y-2">
             <span className="text-stone-500 text-sm">Images</span>
@@ -176,6 +191,27 @@ export default function DashboardUserCommissionCard({
             </div>
           </div>
         )}
+
+        {/* paid status button */}
+        <div className="mt-auto self-end">
+          <Button
+            size={"lg"}
+            variant="default"
+            className="w-full"
+            // onClick={() => handlePayCommission(commission.id)}
+          >
+            Pay For Commission
+          </Button>
+
+          <Button
+            size={"lg"}
+            variant="outline"
+            className="w-full flex items-center justify-center gap-4 "
+            // onClick={() => handlePayCommission(commission.id)}
+          >
+            Paid <Check />
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
